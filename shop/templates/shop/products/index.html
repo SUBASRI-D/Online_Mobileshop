@@ -1,0 +1,30 @@
+{% extends 'shop/layouts/main.html' %}
+{% block content %}
+
+<section class="py-4 my-5">
+    <div class="container mx-auto">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+             
+            {% for item in products %}
+            <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+                <img src="{{item.product_image.url}}" class="w-full h-64 object-contain" alt="categories">
+                <a href="{% url 'product_details' category_name item.name %}">
+                    <div class="p-4">
+                        <h5 class="text-xl text-primary font-semibold text-center">{{ item.name }}</h5>
+                        <p class="flex justify-between mt-3">
+                            <span class="bg-red-500 text-white px-2 py-1 rounded-md hover:bg-red-600 shadow-md font-bold">
+                                <s>Rs.{{ item.orginal_price | stringformat:'d' }}</s>
+                            </span>
+                            <span class="bg-green-500 px-2 py-1 font-bold text-yellow-50 hover:bg-green-600 rounded-md shadow-md">
+                                Rs.{{ item.selling_price | stringformat:'d' }}
+                            </span>
+                        </p>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

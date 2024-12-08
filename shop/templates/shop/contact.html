@@ -1,0 +1,60 @@
+{% extends 'shop/layouts/main.html' %}
+{% block content %}
+ 
+<div class="flex items-center justify-center min-h-screen bg-teal-300">
+    <div class="bg-white bg-opacity-90 p-8 rounded-lg shadow-lg w-full max-w-md">
+        <h1 class="text-3xl font-bold text-gray-700 text-center mb-6">Contact Us</h1>
+        <form action="{% url 'contact' %}" method="POST" class="space-y-4">
+            {% csrf_token %}
+            <div>
+                <label class="block text-sm font-medium text-gray-700" for="name">Name</label>
+                <input class="w-full mt-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" 
+                       type="text" 
+                       id="name" 
+                       name="name" 
+                       placeholder="Your Name" 
+                       autocomplete="name">   
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700" for="phone">Phone Number</label>
+                <input class="w-full mt-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" 
+                       type="tel" 
+                       id="phone" 
+                       name="phone" 
+                       placeholder="Your Phone Number" 
+                       autocomplete="tel">   
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700" for="email">E-mail</label>
+                <input class="w-full mt-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" 
+                       type="email" 
+                       id="email" 
+                       name="email" 
+                       placeholder="Your E-mail" 
+                       autocomplete="email">   
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700" for="message">Message</label>
+                <textarea class="w-full mt-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" 
+                          id="message" 
+                          name="message" 
+                          rows="4" 
+                          placeholder="Your Message" 
+                          autocomplete="off"></textarea>   
+            </div>
+
+
+            <div class="text-center">
+                <button class="bg-green-500 text-white px-6 py-2 rounded-lg hover:bg-green-600 transition duration-300" type="submit">Send Message</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+ 
+
+
+{% endblock content %}

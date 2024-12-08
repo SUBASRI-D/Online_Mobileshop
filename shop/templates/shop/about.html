@@ -1,0 +1,130 @@
+{% extends 'shop/layouts/main.html' %}
+{% block content %}
+<main class="container mx-auto mt-10 px-6 lg:px-16">
+    <!-- Hero Section -->
+    <section class="relative bg-cover bg-center h-72" 
+        style="background-image: url('https://via.placeholder.com/1920x400');">
+        <div class="bg-black bg-opacity-60 h-full flex flex-col justify-center items-center text-white">
+            <h1 class="text-4xl font-extrabold mb-4">About Mobile Hub</h1>
+            <p class="text-lg">Redefining your mobile shopping experience with trust and innovation.</p>
+        </div>
+    </section>
+
+    <!-- Mission and Vision -->
+    <section class="my-16 text-center">
+        <h2 class="text-3xl font-semibold text-gray-900 mb-6">Our Mission & Vision</h2>
+        <p class="text-gray-700 text-lg leading-relaxed max-w-3xl mx-auto">
+            At <strong>Mobile Hub</strong>, our mission is to empower individuals by providing access to the latest mobile technologies at unbeatable prices.
+            We envision a world where everyone can stay connected through premium devices without compromising on quality or service.
+        </p>
+    </section>
+
+    <!-- Values Section with Icons -->
+    <section class="my-12">
+        <h2 class="text-3xl font-semibold text-center text-gray-900 mb-8">Our Core Values</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="p-8 bg-white rounded-lg shadow-lg text-center">
+                <span class="text-4xl text-blue-500 mb-4 inline-block">
+                    <i class="fas fa-lightbulb"></i>
+                </span>
+                <h3 class="text-2xl font-semibold mb-2">Innovation</h3>
+                <p class="text-gray-600">
+                    We stay ahead of trends by offering the latest and most innovative mobile products.
+                </p>
+            </div>
+            <div class="p-8 bg-white rounded-lg shadow-lg text-center">
+                <span class="text-4xl text-green-500 mb-4 inline-block">
+                    <i class="fas fa-smile"></i>
+                </span>
+                <h3 class="text-2xl font-semibold mb-2">Customer Delight</h3>
+                <p class="text-gray-600">
+                    Your satisfaction is our top priority. We provide exceptional service at every step of your journey.
+                </p>
+            </div>
+            <div class="p-8 bg-white rounded-lg shadow-lg text-center">
+                <span class="text-4xl text-yellow-500 mb-4 inline-block">
+                    <i class="fas fa-shield-alt"></i>
+                </span>
+                <h3 class="text-2xl font-semibold mb-2">Trust & Reliability</h3>
+                <p class="text-gray-600">
+                    Our products are 100% authentic, and our commitment to quality is unwavering.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Meet the Team -->
+    <section class="my-16">
+        <h2 class="text-3xl font-semibold text-center text-gray-900 mb-8">Meet Our Team</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Team Member 1 -->
+            <div class="p-8 bg-white rounded-lg shadow-lg text-center hover:shadow-xl transition-shadow">
+                <img src="https://via.placeholder.com/150" 
+                     alt="Alice Johnson" 
+                     class="w-32 h-32 rounded-full mx-auto mb-4">
+                <h3 class="text-2xl font-bold text-gray-800">Johnson</h3>
+                <p class="text-gray-500">CEO & Founder</p>
+                <p class="text-gray-600 mt-2">
+                    Alice founded Mobile Hub with a vision to make mobile technology accessible to everyone.
+                </p>
+            </div>
+
+            <!-- Team Member 2 -->
+            <div class="p-8 bg-white rounded-lg shadow-lg text-center hover:shadow-xl transition-shadow">
+                <img src="https://via.placeholder.com/150" 
+                     alt="Bob Smith" 
+                     class="w-32 h-32 rounded-full mx-auto mb-4">
+                <h3 class="text-2xl font-bold text-gray-800">Smith</h3>
+                <p class="text-gray-500">CTO</p>
+                <p class="text-gray-600 mt-2">
+                    Bob ensures Mobile Hub stays ahead with the latest tech solutions and innovations.
+                </p>
+            </div>
+
+            <!-- Team Member 3 -->
+            <div class="p-8 bg-white rounded-lg shadow-lg text-center hover:shadow-xl transition-shadow">
+                <img src="https://via.placeholder.com/150" 
+                     alt="Charlie Brown" 
+                     class="w-32 h-32 rounded-full mx-auto mb-4">
+                <h3 class="text-2xl font-bold text-gray-800">Charlie</h3>
+                <p class="text-gray-500">COO</p>
+                <p class="text-gray-600 mt-2">
+                    Charlie ensures smooth operations, focusing on excellent service delivery.
+                </p>
+            </div>
+        </div>
+    </section>
+    <!---address-->
+    <section class="my-16">
+        <h2 class="text-3xl font-semibold text-center text-gray-900 mb-8">Address</h2>
+        <div class="flex flex-col md:flex-row md:space-x-6 space-y-6 md:space-y-0">
+            <div class="bg-white p-6 rounded-lg shadow-md flex-1">
+                <p class="text-gray-600 italic">Mobile World Store
+                    123 Gadget Lane
+                    Tech City, TX 75001
+                    United States
+                </p><br>
+                <p class="text-gray-600 italic">CONTACT NO:XXXXXXXXXXX</p>
+                
+            </div>
+            
+    </section>
+
+
+    <!-- Customer Testimonials -->
+    <section class="my-16">
+        <h2 class="text-3xl font-semibold text-center text-gray-900 mb-8">What Our Customers Say</h2>
+        <div class="flex flex-col md:flex-row md:space-x-6 space-y-6 md:space-y-0">
+            <div class="bg-white p-6 rounded-lg shadow-md flex-1">
+                <p class="text-gray-600 italic">"Mobile Hub is my go-to place for all mobile needs. Amazing products and top-notch service!"</p>
+                <p class="mt-4 text-right text-gray-800 font-bold">- Rahul </p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md flex-1">
+                <p class="text-gray-600 italic">"I loved the seamless shopping experience. Highly recommend Mobile Hub!"</p>
+                <p class="mt-4 text-right text-gray-800 font-bold">- Priya </p>
+            </div>
+        </div>
+    </section>
+    
+</main>
+{% endblock content %}

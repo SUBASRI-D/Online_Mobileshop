@@ -1,0 +1,146 @@
+{% extends 'shop/layouts/main.html' %}
+{% block content %}
+<section class="py-4 my-5">
+    <div class="container mx-auto">
+        <div class="flex flex-col md:flex-row">
+             
+            <div class="md:w-1/3 w-full my-3 text-center bg-white  md:mx-10  p-3  " id="pro_img">
+                <img src="{{ products.product_image.url }}" class="h-96 w-full object-contain" alt="{{ products }}">
+            </div>
+             
+            <div class="md:w-2/3 w-full my-3 shadow-md bg-red-50 p-5" id="contain">
+                <h4 class="text-success text-xl font-semibold">{{ products | upper }}</h4><br>
+                <p>{{ products.description }}</p>
+                <h6 class="my-2 text-red-600">Current Price: Rs.<s>{{ products.orginal_price }}</s></h6>
+                <h5 class="my-2 text-blue-600">Offer Price: Rs.{{ products.selling_price }}</h5>
+                <div class="my-3">
+                    {% if products.quantity > 0 %}
+                    <input type="hidden" value="{{ products.id }}" id="pid">
+                    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+                    
+                    <div class="flex space-x-2">
+                        <button class="bg-green-500 hover:bg-green-600 rounded-md text-lime-50 p-2" id="btnMinus"><i class="fa fa-minus"></i></button>
+                        <input type="text" name="qty" id="txtQty" value="1" class="w-16 text-center border border-gray-300 rounded">
+                        <button class="bg-green-500 hover:bg-green-600 rounded-md text-lime-50 p-2" id="btnPlus"><i class="fa fa-plus"></i></button>
+                    </div>
+                    <br>
+                    <button class="btn btn-primary shadow-md my-2 bg-blue-500 text-white py-2 px-4 rounded" id="btnCart"><i class="fa-solid fa-cart-shopping"></i> Add to Cart</button>
+                    <button class="btn btn-primary shadow-md my-2 bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded" id="buyitem"> BUY NOW </button>
+                    {% else %}
+                    <button class="btn btn-secondary shadow-md my-2 bg-gray-400 text-white py-2 px-4 rounded"><i class="fa-solid fa-minus"></i> Out of Stock</button>
+                    {% endif %}
+                    <button class="btn btn-danger shadow-md my-2 bg-red-500 text-white py-2 px-4 rounded" id="btnFav"><i class="fa fa-heart"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br><br>
+</section>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+    const btnPlus = document.getElementById("btnPlus");
+    const btnMinus = document.getElementById("btnMinus");
+    const txtQty = document.getElementById("txtQty");
+    const pid = document.getElementById("pid");
+    const tkn = document.querySelector('[name="csrfmiddlewaretoken"]').value;
+    const btnCart = document.getElementById("btnCart");
+    const btnFav = document.getElementById("btnFav");
+
+    // Increment quantity
+    btnPlus.addEventListener("click", function() {
+        let qty = parseInt(txtQty.value, 10);
+        qty = isNaN(qty) ? 0 : qty;
+        if (qty < 10) {
+            qty++;
+            txtQty.value = qty;
+        }
+    });
+
+    // Decrement quantity
+    btnMinus.addEventListener("click", function() {
+        let qty = parseInt(txtQty.value, 10);
+        qty = isNaN(qty) ? 0 : qty;
+        if (qty > 1) {
+            qty--;
+            txtQty.value = qty;
+        }
+    });
+
+    // Add to Cart functionality
+    btnCart.addEventListener("click", function() {
+        let qty = parseInt(txtQty.value, 10);
+        qty = isNaN(qty) ? 0 : qty;
+
+        if (qty > 0) {
+            let postObj = {
+                product_qty: qty,
+                'pid': pid.value
+            };
+            console.log(postObj);
+
+            // Disable the button while processing
+            btnCart.disabled = true;
+
+            fetch("/addtocart", {
+                method: 'POST',
+                credentials: 'same-origin',
+                headers: {
+                    'Accept': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'X-CSRFToken': tkn,
+                },
+                body: JSON.stringify(postObj)
+            }).then(response => {
+                if (response.ok) {
+                    return response.json();
+                }
+                throw new Error('Network response was not ok.');
+            }).then(data => {
+                alert(data['status']); // You can replace this with a UI feedback
+            }).catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+                alert('Failed to add product to the cart.');
+            }).finally(() => {
+                btnCart.disabled = false; // Re-enable the button
+            });
+        } else {
+            alert("Please enter a valid quantity.");
+        }
+    });
+
+    // Add to Favorites functionality
+    btnFav.addEventListener("click", function() {
+        let postObj = { 'pid': pid.value };
+        console.log(postObj);
+
+        // Disable the button while processing
+        btnFav.disabled = true;
+
+        fetch("/fav", {
+            method: 'POST',
+            credentials: 'same-origin',
+            headers: {
+                'Accept': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest',
+                'X-CSRFToken': tkn,
+            },
+            body: JSON.stringify(postObj)
+        }).then(response => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw new Error('Network response was not ok.');
+        }).then(data => {
+            alert(data['status']); // You can replace this with a UI feedback
+        }).catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+            alert('Failed to add product to favorites.');
+        }).finally(() => {
+            btnFav.disabled = false; // Re-enable the button
+        });
+    });
+});
+
+</script>
+{% endblock content %}f

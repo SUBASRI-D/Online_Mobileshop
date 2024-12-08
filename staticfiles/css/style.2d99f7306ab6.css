@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Yantramanav:wght@100;300;400;500;700;900&display=swap');
+
+html{
+    font-size: 14px;
+}
+body{
+    background-color: rgb(57, 253, 253);
+}
+header{
+    background-color: aqua;
+}
+a{
+    text-decoration: none;
+}
+
+ 
+hr{
+    box-shadow: inset;
+}
+ 
+ 

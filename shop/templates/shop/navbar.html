@@ -1,0 +1,101 @@
+<body class="bg-teal-300 p-0 m-0 font-sans">
+
+    <header class="bg-teal-400 p-3 shadow-md">
+        <div class="container mx-auto flex flex-wrap items-center justify-between">
+            <!-- Brand Name -->
+<<<<<<< HEAD
+            <div class="flex-shrink-0 text-black font-bold text-xs md:text-2xl ml-2 md:ml-10">
+                <a href="{% url 'home' %}">Mobile hub</a>
+=======
+            <div class="flex-shrink-0 text-black font-bold text-xl md:text-2xl ml-0 md:ml-10">
+                <a href="{% url 'home' %}">Partha Mobiles</a>
+>>>>>>> 421ef7f (profile)
+            </div>
+    
+            <!-- Search Bar -->
+            <div class="flex-1 relative w-full max-w-md md:w-96 mx-4">
+                <input type="text" placeholder="Search for products, brands and more" 
+                    class="px-4 py-2 w-full rounded-full bg-white border focus:outline-none hidden md:block">
+                <span class="absolute inset-y-0 right-4 flex items-center ">
+                    <svg class="w-5 h-5 text-gray-400 hidden md:block" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M12.9 14.32a8 8 0 111.41-1.41l4.29 4.3a1 1 0 11-1.42 1.41l-4.28-4.3zM8 14a6 6 0 100-12 6 6 0 000 12z" clip-rule="evenodd"/>
+                    </svg>
+                </span>
+            </div>
+    
+            <!-- Cart and User Links -->
+            <div class="flex gap-3 items-center mt-3 md:mt-0 text-black">
+                <!-- Cart Icon -->
+                <a class="text-xl cursor-pointer" href="{% url 'cart' %}">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="hidden md:inline">Cart</span>
+                </a>
+    
+                <!-- Like Icon -->
+                <a class="text-xl cursor-pointer" href="{% url 'favviewpage' %}">
+                    <i class="fa-regular fa-heart"></i>
+                    <span class="hidden md:inline">Like</span>
+                </a>
+    
+               <!-- User Authentication Links with Dropdown -->
+               {% if request.user.is_authenticated %}
+               <div class="relative group">
+                   <a class="text-xl cursor-pointer flex items-center" id="userMenuToggle" href="#">
+                       <i class="fa-solid fa-user"></i>
+                       <span class="ml-1 hidden md:inline">{{ request.user }}</span>
+                   </a>
+                   
+                   <!-- Dropdown Menu -->
+                   <div class="absolute hidden group-hover:block bg-white text-black right-0 mt-2 py-2 w-48 rounded-lg shadow-lg" id="userDropdown">
+                       <a href="{% url 'profile' %}" class="block px-4 py-2 hover:bg-gray-200">Profile</a>
+                       <a href="{% url 'password_change' %}" class="block px-4 py-2 hover:bg-gray-200">Change Password</a>
+                       <a href="{% url 'logout' %}" class="block px-4 py-2 hover:bg-gray-200">Logout</a>
+                   </div>
+               </div>
+                {% else %}
+                <a class="text-xl cursor-pointer" href="{% url 'login' %}">
+                    <i class="fa-solid fa-user"></i>
+                    <span class="hidden md:inline">Login</span>
+                </a>
+                {% endif %}
+            </div>
+        </div>
+    </header>
+    
+
+
+    <div class="md:hidden">
+        <button id="menu-btn" class="text-black focus:outline-none">
+            <i class="fa-solid fa-bars fa-2x"></i>
+        </button>
+    </div>
+
+    <!-- Navigation Links -->
+    <nav class="hidden md:flex flex-col justify-center md:flex-row space-y-4 md:space-y-0 md:space-x-12 md:mt-7 text-black"
+        id="menu">
+        <a href="{% url 'mobileviews' 'Mobiles' %}">MOBILES <i class="fa-solid fa-chevron-down"></i></a>
+        <a href="{% url 'mobileviews' 'Accessories' %}">ACCESSORIES <i class="fa-solid fa-chevron-down"></i></a>
+        <a href="{% url 'mobileviews' 'Gadgets' %}">GADGETS <i class="fa-solid fa-chevron-down"></i></a>
+        <a href="{% url 'mobileviews' 'second_hand' %}">SECOND_HAND <i class="fa-solid fa-chevron-down"></i> </a>
+        <a href="{% url 'offers' %}">OFFERS</a>
+        <a href="{% url 'service' %}">SERVICES</a>
+        <a href="{% url 'about' %}">ABOUT</a>
+        <a href="{% url 'contact' %}">CONTACT</a>
+    </nav>
+
+    <br>
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const menu = document.getElementById('menu');
+
+        menuBtn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+        document.getElementById('userMenuToggle').addEventListener('click', function(e) {
+        e.preventDefault(); // Prevent the default anchor behavior
+        const dropdown = document.getElementById('userDropdown');
+        dropdown.classList.toggle('hidden'); // Toggle the dropdown visibility
+    });
+    </script>
+
+</body>
